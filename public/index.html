@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    
+</head>
+
+<body>
+    <div class="container">
+        <h1>Toy API documentation</h1>
+
+        <h3>user rauts</h3>
+        <table class="table">
+            <thead class="table-dark">
+                <tr>
+                    <th class="text-center" scope="col">#Method</th>
+                    <th class="text-center" scope="col"> API URL</th>
+                    <th class="text-center" scope="col">Body</th>
+                    <th class="text-center" scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>POST</td>
+                    <td><a class="post" href="#">/users</a></td>
+                    <td>
+                        <pre>
+                        {
+                            "name": "Yossi Levi",
+                            "email":"yl@gmail.com",
+                            "password":"yl123456"
+                        } </pre>
+                    </td>
+                    <td>Add a new user to the data base</td>
+                </tr>
+                <tr>
+                    <td>POST (login)</td>
+                    <td><a class="post" href="#">/users/login</a></td>
+                    <td>
+                        <pre>
+                        {
+                            "email":"yl@gmail.com",
+                            "password":"yl123456"
+                        } </pre>
+                    </td>
+                    <td>User login, if the email and password are correct the server will respond with a token</td>
+                </tr>
+
+            </tbody>
+        </table>
+
+        <h3>toys routs</h3>
+        <table class="table">
+            <thead class="table-dark">
+                <tr>
+                    <th class="text-center" scope="col">#Method</th>
+                    <th class="text-center" scope="col">URL</th>
+                    <th class="text-center" scope="col">Body</th>
+                    <th class="text-center" scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>GET</td>
+                    <td><a class="get" href="#">/toys</a></td>
+                    <td class="text-center">none</td>
+                    <td>Get a list of all the toys, will present 10 results per page.</td>
+                </tr>
+                <tr>
+                    <td>GET</td>
+                    <td><a class="get" href="#">/toys/search?s=doll</a></td>
+                    <td class="text-center">none</td>
+                    <td>search for a toy by searching follwing name or info after the "s=", it will present 10
+                        results per page.
+                    </td>
+                </tr>
+                <tr>
+                    <td>GET</td>
+                    <td><a class="get" href="#">/toys/prices?min=50&max=200</a></td>
+                    <td class="text-center">none</td>
+                    <td>Get a list of the toys by min & max , it will present 10 results per page.</td>
+                </tr>
+                <tr>
+                    <td>GET</td>
+                    <td><a class="get" href="#">/toys/category/balls</a></td>
+                    <td class="text-center">none</td>
+                    <td>Get a list of all the toys in toys <strong>category</strong>, it will present 10 results per
+                        page.</td>
+                </tr>
+                <tr>
+                    <td>GET</td>
+                    <td><a class="get" href="#">/toys/:id</a></td>
+                    <td class="text-center">none</td>
+                    <td>Get a toy by id</td>
+                </tr>
+                <tr>
+                    <td>POST</td>
+                    <td><a class="post" href="#">/toys</a></td>
+                    <td>
+                        <pre>
+
+
+{
+    "name": "fish doll",
+    "info": "fish doll to children.",
+    "category": "Stuffed Animals",
+    "img_url":"Fish.jpg" ,
+    "price": 14.99
+}
+                            
+                          
+</pre>
+                    </td>
+                    <td>Add a new toy to the data base, <strong>You need a token for this query.</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td>PATCH</td>
+                    <td><a id="patch" href="#">/toys/:id </a></td>
+                    <td>
+                        <pre>
+{
+"name":"Fish Game",
+"info":"Fish",
+"category":"games",
+"img":"Fish.jpg" ,
+"price":25
+}
+</pre>
+                    </td>
+                    <td>Update a toy in the data base,<strong>You need a token for this query.</strong></td>
+                </tr>
+                <tr>
+                    <td>DELETE</td>
+                    <td><a id="delete" href="#">/toys/:id</a></td>
+                    <td class="text-center">none</td>
+                    <td>Delete a toy from the data base, <strong>You need a token for this query.</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
