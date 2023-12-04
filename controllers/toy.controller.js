@@ -119,7 +119,8 @@ exports.addTask = async (req, res, next) => {
 exports.deleteTask = async (req, res, next) => {
     try {
         //console.log(req.params.id);
-        if (res.locals.userId != Toy.findById(req.params.id).ownerId)
+        const toy= await Toy.findOne({_id:req.params.id});
+        if (res.locals.userId != toy.ownerId)
             return res.status(404).json({ msg: "the login user cant delete this toy" });
 
         const delItem = await Toy.findByIdAndDelete(req.params.id);
@@ -135,7 +136,11 @@ exports.updateTask = async (req, res, next) => {
     try {
         const valid = toyJoiSchema.toyObj.validate(body);
         if (valid.error) throw Error(valid.error);
-        if (res.locals.userId != Toy.findById(req.params.id).ownerId)
+        console.log(res.locals.userId);
+        console.log(req.params.id);
+        const toy= await Toy.findOne({_id:req.params.id});
+        console.log(toy.ownerId);
+        if (res.locals.userId != toy.ownerId)
             return res.status(404).json({ msg: "thr login user cant update this toy" });
 
         const updatedObject = await Toy.findByIdAndUpdate(req.params.id, req.body, { new: true });
